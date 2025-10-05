@@ -1,0 +1,226 @@
+<!DOCTYPE html> <!-- Define el documento como HTML5 -->
+<html lang="es"> <!-- Lenguaje del sitio en español -->
+<head>
+  <meta charset="UTF-8" /> <!-- Codificación UTF-8 para caracteres especiales -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Adaptación a móviles (responsive) -->
+  <!-- Favicon -->
+<link rel="icon" type="image/png" href="images/logovitcitrus.png">
+
+  <title>VitaCitrus - Extracto de Lima</title> <!-- Título en la pestaña del navegador -->
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Carga TailwindCSS desde CDN -->
+  <!-- Boxicons -->
+<!-- Boxicons (opcional) -->
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="./css/stayls.css"> <!-- Hoja de estilos personalizada -->
+</head>
+<body class="bg-white text-gray-800 font-sans"> <!-- Estilo base: fondo blanco, texto gris oscuro, fuente sans-serif -->
+
+  <!-- Navbar -->
+ <!-- Navbar -->
+<header class="bg-green-700 text-white shadow">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- Logo + nombre -->
+    <div class="flex items-center gap-3">
+      <!-- Si tienes imagen de logo, úsala así (ajusta ruta) -->
+      <!-- <img src="/img/logo.png" alt="VitaCitrus" class="h-8 md:h-10"> -->
+      <img src="./images/logovitcitrus.png" alt="VitaCitrus" class="h-10 w-auto">
+      <h1 class="text-2xl font-bold">VitaCitrus</h1>
+    </div>
+
+    <!-- Botón Hamburguesa (visible solo en móviles) -->
+    <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+      <i class="bx bx-menu text-2xl"></i> <!-- icono Boxicons -->
+    </button>
+
+    <!-- Menú para escritorio -->
+    <nav id="desktop-menu" class="space-x-6 hidden md:flex">
+      <a href="#inicio" class="hover:text-green-200">Inicio</a>
+      <a href="#producto" class="hover:text-green-200">Producto</a>
+      <a href="#beneficios" class="hover:text-green-200">Beneficios</a>
+      <a href="#recetas" class="hover:text-green-200">Recetas</a>
+      <a href="#proceso" class="hover:text-green-200">Proceso</a>
+      <a href="#testimonios" class="hover:text-green-200">Testimonios</a>
+      <a href="#comprar" class="hover:text-green-200">Comprar</a>
+      <a href="#contacto" class="hover:text-green-200">Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Menú móvil (inicia oculto) -->
+  <div id="mobile-menu" class="hidden bg-green-800 md:hidden px-6 pb-4">
+    <a href="#inicio" class="block py-2 hover:text-green-200">Inicio</a>
+    <a href="#producto" class="block py-2 hover:text-green-200">Producto</a>
+    <a href="#beneficios" class="block py-2 hover:text-green-200">Beneficios</a>
+    <a href="#recetas" class="block py-2 hover:text-green-200">Recetas</a>
+    <a href="#proceso" class="block py-2 hover:text-green-200">Proceso</a>
+    <a href="#testimonios" class="block py-2 hover:text-green-200">Testimonios</a>
+    <a href="#comprar" class="block py-2 hover:text-green-200">Comprar</a>
+    <a href="#contacto" class="block py-2 hover:text-green-200">Contacto</a>
+  </div>
+</header>
+
+
+  <!-- Hero Section -->
+<section id="inicio" class="hero-section h-[40vh] flex flex-col justify-center items-center text-center p-6 relative overflow-hidden">
+  <h2 class="text-4xl md:text-6xl font-bold text-white relative z-10 drop-shadow-lg">Extracto de Lima</h2>
+  <p  class="mt-4 text-lg md:text-xl text-white max-w-xl relative z-10 drop-shadow-md">
+    Natural, orgánico y saludable 🍋. Descubre el poder fresco de la lima en cada gota.
+  </p>
+  <div class="mt-6 relative z-10">
+    <a href="#producto" class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition">Descúbrelo ahora</a>
+  </div>
+</section>
+
+
+
+
+  <!-- Producto -->
+  <section id="producto" class="py-16 px-6 md:px-20 bg-white">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <img src="./images/imgen1.jpg" alt="Extracto de Lima" class="rounded-2xl shadow-lg"> <!-- Imagen del producto -->
+      <div>
+        <h2 class="text-3xl font-bold text-green-700">Sobre el Producto</h2>
+        <p class="mt-4 text-gray-600">
+          VitaCitrus es 100% extracto natural de lima, sin aditivos ni conservantes. Ideal para bebidas,
+          postres y cocina saludable.
+        </p>
+        <ul class="mt-6 space-y-3"> <!-- Lista con beneficios -->
+          <li>✅ 100% Natural y Orgánico</li>
+          <li>✅ Rico en vitamina C</li>
+          <li>✅ Versátil para múltiples preparaciones</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section id="beneficios" class="py-16 bg-green-50 px-6 md:px-20 text-center">
+    <h2 class="text-3xl font-bold text-green-700">Beneficios y Valores</h2>
+    <div class="grid md:grid-cols-4 gap-8 mt-10">
+      <!-- Cada tarjeta es un beneficio -->
+      <div class="p-6 bg-white shadow rounded-xl">🌱 Saludable</div>
+      <div class="p-6 bg-white shadow rounded-xl">🍋 Orgánico</div>
+      <div class="p-6 bg-white shadow rounded-xl">🌍 Sustentable</div>
+      <div class="p-6 bg-white shadow rounded-xl">🍹 Versátil</div>
+    </div>
+  </section>
+
+  <!-- Recetas -->
+  <section id="recetas" class="py-16 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold text-green-700 text-center">Recetas Inspiradoras</h2>
+    <div class="grid md:grid-cols-3 gap-8 mt-10">
+      <!-- Receta 1 -->
+      <div class="bg-green-50 rounded-xl shadow p-4">
+        <img src="./images/reclimonada.jpg" class="rounded-lg mb-4" />
+        <h3 class="font-bold">Limonada Refrescante</h3>
+        <p>Una bebida natural para hidratarte.</p>
+      </div>
+      <!-- Receta 2 -->
+      <div class="bg-green-50 rounded-xl shadow p-4">
+        <img src="./images/recpostre.jpg" class="rounded-lg mb-4" />
+        <h3 class="font-bold">Postre de Lima</h3>
+        <p>Dulce, fresco y saludable.</p>
+      </div>
+      <!-- Receta 3 -->
+      <div class="bg-green-50 rounded-xl shadow p-4">
+        <img src="./images/reccotel.jpg" class="rounded-lg mb-4" />
+        <h3 class="font-bold">Cóctel Tropical</h3>
+        <p>El toque perfecto para tu reunión.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section id="proceso" class="py-16 bg-green-100 px-6 md:px-20 text-center">
+    <h2 class="text-3xl font-bold text-green-700">Nuestro Proceso</h2>
+    <div class="grid md:grid-cols-4 gap-8 mt-10">
+      <!-- Etapas del proceso -->
+      <div class="p-6 bg-white shadow rounded-xl">🌳 Cosecha</div>
+      <div class="p-6 bg-white shadow rounded-xl">🧃 Extracción</div>
+      <div class="p-6 bg-white shadow rounded-xl">⚗️ Filtrado</div>
+      <div class="p-6 bg-white shadow rounded-xl">🍾 Envasado</div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section id="testimonios" class="py-16 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold text-green-700 text-center">Lo que dicen nuestros clientes</h2>
+    <div class="grid md:grid-cols-3 gap-8 mt-10">
+      <div class="p-6 bg-green-50 rounded-lg shadow">“Me encanta, lo uso en mis jugos diarios.” - Ana</div>
+      <div class="p-6 bg-green-50 rounded-lg shadow">“Frescura pura, se siente natural.” - Carlos</div>
+      <div class="p-6 bg-green-50 rounded-lg shadow">“Perfecto para mis postres.” - Laura</div>
+    </div>
+  </section>
+
+  <!-- Comprar -->
+  <section id="comprar" class="py-16 bg-green-50 px-6 md:px-20 text-center">
+    <h2 class="text-3xl font-bold text-green-700">Compra tu Extracto</h2>
+    <div class="grid md:grid-cols-3 gap-8 mt-10">
+      <!-- Tarjeta de producto -->
+      <div class="p-6 bg-white shadow rounded-xl">
+        <h3 class="font-bold text-lg">Presentación 250ml</h3>
+        <p class="mt-2">$15.000</p>
+        <a href="https://wa.me/573000000000" class="block mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Comprar</a>
+      </div>
+      <div class="p-6 bg-white shadow rounded-xl">
+        <h3 class="font-bold text-lg">Presentación 500ml</h3>
+        <p class="mt-2">$25.000</p>
+        <a href="https://wa.me/573000000000" class="block mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Comprar</a>
+      </div>
+      <div class="p-6 bg-white shadow rounded-xl">
+        <h3 class="font-bold text-lg">Presentación 1L</h3>
+        <p class="mt-2">$40.000</p>
+        <a href="https://wa.me/573000000000" class="block mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Comprar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-16 px-6 md:px-20 bg-white">
+    <h2 class="text-3xl font-bold text-green-700 text-center">Contáctanos</h2>
+    <form class="max-w-2xl mx-auto mt-10 space-y-6">
+      <input type="text" placeholder="Nombre" class="w-full border border-gray-300 rounded-lg px-4 py-3" />
+      <input type="email" placeholder="Correo" class="w-full border border-gray-300 rounded-lg px-4 py-3" />
+      <textarea placeholder="Mensaje" class="w-full border border-gray-300 rounded-lg px-4 py-3"></textarea>
+      <button class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Enviar</button>
+    </form>
+  </section>
+  
+  <!-- Redes Sociales -->
+  <section id="redes" class="py-16 bg-green-100 px-6 md:px-20 text-center">
+    <h2 class="text-3xl font-bold text-green-700">Síguenos en Redes Sociales</h2>
+    <p class="mt-4 text-gray-600">Conéctate con nuestra comunidad y descubre más sobre el extracto de lima 🍋</p>
+    
+    <div class="grid md:grid-cols-3 gap-8 mt-10 max-w-4xl mx-auto">
+      <!-- Facebook -->
+      <a href="https://facebook.com/tu-pagina" target="_blank" class="p-6 bg-white rounded-xl shadow hover:shadow-xl transition transform hover:-translate-y-1">
+        <div class="text-5xl text-blue-600 mb-4">📘</div>
+        <h3 class="font-bold text-lg">Facebook</h3>
+        <p class="text-gray-600 mt-2">Únete a nuestra comunidad en Facebook.</p>
+      </a>
+      <!-- Instagram -->
+      <a href="https://instagram.com/tu-pagina" target="_blank" class="p-6 bg-white rounded-xl shadow hover:shadow-xl transition transform hover:-translate-y-1">
+        <div class="text-5xl text-pink-500 mb-4">📸</div>
+        <h3 class="font-bold text-lg">Instagram</h3>
+        <p class="text-gray-600 mt-2">Descubre recetas y fotos exclusivas.</p>
+      </a>
+      <!-- TikTok -->
+      <a href="https://tiktok.com/@tu-pagina" target="_blank" class="p-6 bg-white rounded-xl shadow hover:shadow-xl transition transform hover:-translate-y-1">
+        <div class="text-5xl text-black mb-4">🎵</div>
+        <h3 class="font-bold text-lg">TikTok</h3>
+        <p class="text-gray-600 mt-2">Videos divertidos y creativos con VitaCitrus.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 VitaCitrus. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="./js/main.js"></script>
+
+</body>
+</html>
+
