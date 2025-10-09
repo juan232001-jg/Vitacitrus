@@ -62,6 +62,7 @@
             <!-- Menú desktop - hidden en móviles, visible en md (768px+) -->
             <ul class="hidden md:flex gap-8">
                 <li><a href="#inicio" class="nav-link relative text-dark font-medium hover:text-primary transition">Inicio</a></li>
+                <li><a href="#quienes-somos" class="nav-link relative text-dark font-medium hover:text-primary transition">Quiénes Somos</a></li>
                 <li><a href="#beneficios" class="nav-link relative text-dark font-medium hover:text-primary transition">Beneficios</a></li>
                 <li><a href="#producto" class="nav-link relative text-dark font-medium hover:text-primary transition">Producto</a></li>
                 <li><a href="#recetas" class="nav-link relative text-dark font-medium hover:text-primary transition">Recetas</a></li>
@@ -79,6 +80,7 @@
         <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
             <ul class="flex flex-col space-y-4">
                 <li><a href="#inicio" class="block text-dark font-medium hover:text-primary transition py-2">Inicio</a></li>
+                <li><a href="#quienes-somos" class="nav-link relative text-dark font-medium hover:text-primary transition">Quiénes Somos</a></li>
                 <li><a href="#beneficios" class="block text-dark font-medium hover:text-primary transition py-2">Beneficios</a></li>
                 <li><a href="#producto" class="block text-dark font-medium hover:text-primary transition py-2">Producto</a></li>
                 <li><a href="#recetas" class="block text-dark font-medium hover:text-primary transition py-2">Recetas</a></li>
@@ -111,7 +113,160 @@
             </a>
         </div>
     </section>
+    <!-- Sección Quiénes Somos -->
+    <section id="quienes-somos" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Título Principal -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-green-800 mb-4">
+                    ¿Quiénes Somos?
+                </h2>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Somos estudiantes apasionados por la agricultura sostenible y la tecnología, 
+                    unidos para llevar la frescura de los cítricos colombianos al mundo digital.
+                </p>
+            </div>
 
+            <!-- Historia del Proyecto -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-12">
+                <h3 class="text-3xl font-bold text-green-700 mb-6 flex items-center">
+                    <span class="text-4xl mr-3">🌱</span>
+                    Nuestra Historia
+                </h3>
+                <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                    VitaCitrus nació en 2025 como un proyecto innovador de dos estudiantes de segundo semestre 
+                    del programa Técnico Profesional en Producción Agropecuaria de la Universidad Industrial 
+                    de Santander (UIS). Nuestra misión es conectar la tradición agrícola colombiana con las 
+                    herramientas digitales modernas.
+                </p>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    Inspirados por la riqueza cítrica de nuestra región y el potencial del extracto de limón 
+                    como producto natural y saludable, decidimos crear una plataforma que no solo muestre 
+                    nuestro producto, sino que cuente la historia detrás de cada gota de frescura.
+                </p>
+            </div>
+
+            <!-- Equipo -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-green-700 mb-8 text-center">
+                    Nuestro Equipo
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Miembro 1 -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-6xl">
+                                    <img src="./images/FOTO_BRAYAN_ESTIBEN.png" alt="Juan" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
+                               
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold text-green-800 mb-2">Brayan Estiben Almeida Martinez</h4>
+                            <p class="text-green-600 font-semibold mb-4">
+                                Estudiante de Producción Agropecuaria - UIS
+                            </p>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                Apasionado por la agricultura sostenible y las prácticas ecológicas. 
+                                Especializado en el cultivo y procesamiento de cítricos, aporta todo el 
+                                conocimiento técnico y agropecuario al proyecto.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+                                    🌾 Agricultura
+                                </span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">
+                                    🍋 Cítricos
+                                </span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                                    ♻️ Sostenibilidad
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Miembro 2 -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-6xl">
+                                    <img src="./images/Juan_G.png" alt="Juan" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
+                                
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold text-green-800 mb-2">Juan Gabriel Almeida Martinez</h4>
+                            <p class="text-green-600 font-semibold mb-4">
+                                Ingeniero de Sistemas | Estudiante de Producción Agropecuaria - UIS
+                            </p>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                Combina su experiencia en desarrollo web y sistemas con su pasión por el 
+                                sector agropecuario. Responsable del desarrollo tecnológico y la presencia 
+                                digital de VitaCitrus.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+                                    💻 Desarrollo Web
+                                </span>
+                                <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm">
+                                    🚀 Innovación
+                                </span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
+                                    🌐 AgriTech
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nuestra Visión -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h4 class="text-xl font-bold text-green-800 mb-3">Nuestra Misión</h4>
+                    <p class="text-gray-700">
+                        Ofrecer extracto de limón de la más alta calidad mientras promovemos 
+                        prácticas agrícolas sostenibles.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                    <div class="text-5xl mb-4">🌟</div>
+                    <h4 class="text-xl font-bold text-green-800 mb-3">Nuestra Visión</h4>
+                    <p class="text-gray-700">
+                        Ser referentes en la integración de tecnología y agricultura, 
+                        llevando productos naturales colombianos al mundo.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                    <div class="text-5xl mb-4">💚</div>
+                    <h4 class="text-xl font-bold text-green-800 mb-3">Nuestros Valores</h4>
+                    <p class="text-gray-700">
+                        Calidad, sostenibilidad, innovación y compromiso con la 
+                        comunidad agrícola colombiana.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-gradient-to-r from-green-600 to-yellow-500 rounded-2xl shadow-2xl p-8 md:p-12 text-center text-white">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">
+                    ¿Quieres saber más sobre VitaCitrus?
+                </h3>
+                <p class="text-xl mb-6 opacity-90">
+                    Descubre todos nuestros productos y únete a nuestra comunidad
+                </p>
+                <button href="#contacto" class="bg-white text-green-600 font-bold px-8 py-4 rounded-full text-lg hover:bg-green-50 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                    Contáctanos
+                </button>
+            </div>
+        </div>
+    </section>
     <!-- =====================================================
          SECCIÓN BENEFICIOS
          Grid responsive: 1 col en móvil, 2 en tablet, 4 en desktop
