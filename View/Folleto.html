@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ficha Técnica - VitaCitrus</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../css/stayls.css" />
   <script>
     tailwind.config = {
       theme: {
@@ -19,6 +18,17 @@
       },
     };
   </script>
+  <style>
+    .gradient-bg {
+      background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+    }
+    
+    @media print {
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-to-b from-lime-50 to-white text-gray-800 font-sans">
@@ -46,6 +56,35 @@
         <strong>translúcido, aromático y ácido</strong>, libre de conservantes y colorantes,
         ideal para la industria <strong>alimentaria, cosmética y farmacéutica</strong>.
       </p>
+    </section>
+
+    <!-- Visor PDF Simplificado -->
+    <section class="mb-12 no-print">
+      <h2 class="text-2xl font-bold text-dark border-b-2 border-primary inline-block pb-1 mb-4">
+        📄 Folleto Técnico VitaCitrus
+      </h2>
+      <div class="bg-gray-50 rounded-lg p-6 shadow-inner">
+        <p class="text-center text-gray-600 mb-4">
+          Folleto informativo para eventos de emprendedores
+        </p>
+        
+        <!-- Embed PDF directo -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <iframe 
+            src="../images/FOLLETOPARAEVENTODEEMPRENDEORES.pdf" 
+            class="w-full h-[800px] border-0"
+            title="Folleto VitaCitrus para Emprendedores">
+          </iframe>
+        </div>
+        
+        <div class="mt-4 text-center">
+          <a href="../images/FOLLETOPARAEVENTODEEMPRENDEORES.pdf"
+             download="FOLLETOPARAEVENTODEEMPRENDEORES.pdf"
+             class="inline-block px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold shadow-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
+            📥 Descargar Folleto PDF
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Características Generales -->
@@ -189,7 +228,7 @@
     </section>
 
     <!-- Botones -->
-    <div class="text-center mt-12 flex flex-wrap justify-center gap-4">
+    <div class="text-center mt-12 flex flex-wrap justify-center gap-4 no-print">
       <a href="../index.html"
          class="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold shadow-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
          ← Volver al Inicio
@@ -209,9 +248,9 @@
     </p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
