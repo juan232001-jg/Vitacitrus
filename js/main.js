@@ -76,20 +76,35 @@ mobileLinks.forEach(link => {
 });
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
         const video = document.getElementById('videoFondo');
         
-        // Intentar reproducir el video
+        // Forzar reproducción
         video.play().catch(function(error) {
             console.log("Error al reproducir video:", error);
         });
         
-        // Verificar si el video carga correctamente
-        video.addEventListener('loadeddata', function() {
-            console.log("Video cargado correctamente");
-        });
+        // Función para ajustar el video al tamaño de pantalla
+        function ajustarVideo() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const videoWidth = video.videoWidth;
+            const videoHeight = video.videoHeight;
+            
+            const windowRatio = windowWidth / windowHeight;
+            const videoRatio = videoWidth / videoHeight;
+            
+            if (windowRatio > videoRatio) {
+                video.style.width = '100vw';
+                video.style.height = 'auto';
+            } else {
+                video.style.width = 'auto';
+                video.style.height = '100vh';
+            }
+        }
         
-        video.addEventListener('error', function(e) {
-            console.log("Error al cargar video:", e);
-        });
+        // Ajustar cuando el video carga y cuando se redimensiona
+        video.addEventListener('loadedmetadata', ajustarVideo);
+        window.addEventListener('resize', ajustarVideo);
     });
+
