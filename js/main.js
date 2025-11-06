@@ -74,3 +74,22 @@ mobileLinks.forEach(link => {
         mobileMenuIcon.classList.add('fa-bars');
     });
 });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('videoFondo');
+        
+        // Intentar reproducir el video
+        video.play().catch(function(error) {
+            console.log("Error al reproducir video:", error);
+        });
+        
+        // Verificar si el video carga correctamente
+        video.addEventListener('loadeddata', function() {
+            console.log("Video cargado correctamente");
+        });
+        
+        video.addEventListener('error', function(e) {
+            console.log("Error al cargar video:", e);
+        });
+    });
