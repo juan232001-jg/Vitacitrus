@@ -685,7 +685,7 @@ section {
     }
 }
 
-.story-text {}
+
 
 .big-stat {
     font-family: var(--font-display);
@@ -957,7 +957,7 @@ section {
     box-shadow: 0 0 12px var(--lime);
 }
 
-.product-info {}
+
 
 .product-price {
     display: flex;
