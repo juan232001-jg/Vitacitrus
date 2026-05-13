@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad — VitaCitrus</title>
+<meta name="description" content="Política de privacidad y tratamiento de datos personales de VitaCitrus Colombia.">
+<meta name="theme-color" content="#84cc16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--black:#050d05;--card:#0e1a0e;--white:#f8f8f2;--lime:#84cc16;--gray:rgba(248,248,242,0.5);--border:rgba(132,204,22,0.1);--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+*{cursor:none!important;}
+body{font-family:var(--body);background:var(--black);color:var(--white);min-height:100vh;}
+#cur{position:fixed;width:8px;height:8px;background:var(--lime);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+#curR{position:fixed;width:28px;height:28px;border:1.5px solid rgba(132,204,22,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px;background:rgba(5,13,5,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--display);font-size:1.3rem;letter-spacing:2px;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--lime);}
+.nav-back{font-family:var(--mono);font-size:11px;color:var(--gray);text-decoration:none;letter-spacing:1px;transition:color .2s;}
+.nav-back:hover{color:var(--lime);}
+
+main{max-width:720px;margin:0 auto;padding:100px 24px 80px;}
+
+.page-tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--lime);text-transform:uppercase;margin-bottom:1rem;}
+h1{font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);letter-spacing:2px;margin-bottom:.5rem;}
+.updated{font-family:var(--mono);font-size:11px;color:rgba(248,248,242,.25);margin-bottom:3rem;}
+
+.toc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:3rem;}
+.toc-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--lime);text-transform:uppercase;margin-bottom:1rem;}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.toc-list a{font-size:.875rem;color:var(--gray);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+.toc-list a::before{content:'→';color:var(--lime);font-size:.75rem;}
+.toc-list a:hover{color:var(--white);}
+
+.section{margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.section:last-child{border-bottom:none;}
+.section-num{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--lime);text-transform:uppercase;margin-bottom:.75rem;}
+h2{font-family:var(--display);font-size:1.8rem;letter-spacing:1px;margin-bottom:1.25rem;color:var(--white);}
+p{font-size:.9rem;color:var(--gray);line-height:1.85;margin-bottom:1rem;}
+p:last-child{margin-bottom:0;}
+ul{list-style:none;margin:1rem 0;display:flex;flex-direction:column;gap:.625rem;}
+ul li{font-size:.875rem;color:var(--gray);padding-left:1.25rem;position:relative;line-height:1.65;}
+ul li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--lime);border-radius:50%;}
+a{color:var(--lime);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.highlight{background:rgba(132,204,22,.06);border:1px solid rgba(132,204,22,.12);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+.highlight p{margin:0;font-size:.875rem;}
+
+footer{border-top:1px solid var(--border);padding:2rem 24px;text-align:center;}
+.footer-logo{font-family:var(--display);font-size:1.1rem;letter-spacing:2px;color:rgba(248,248,242,.3);}
+.footer-logo span{color:var(--lime);}
+.footer-note{font-size:.8rem;color:rgba(248,248,242,.2);margin-top:.5rem;}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+
+<nav>
+  <a href="./index.html" class="nav-logo">VITA<span>CITRUS</span></a>
+  <a href="./index.html" class="nav-back">← Volver</a>
+</nav>
+
+<main>
+  <p class="page-tag">Legal</p>
+  <h1>POLÍTICA DE<br>PRIVACIDAD</h1>
+  <p class="updated">Última actualización: Mayo 2026</p>
+
+  <div class="toc">
+    <p class="toc-title">Contenido</p>
+    <ul class="toc-list">
+      <li><a href="#responsable">Responsable del tratamiento</a></li>
+      <li><a href="#datos">Datos que recopilamos</a></li>
+      <li><a href="#uso">Cómo usamos tus datos</a></li>
+      <li><a href="#derechos">Tus derechos</a></li>
+      <li><a href="#terceros">Terceros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <div class="section" id="responsable">
+    <p class="section-num">01</p>
+    <h2>RESPONSABLE</h2>
+    <p>VitaCitrus es un emprendimiento colombiano con sede en Santander, Colombia. El responsable del tratamiento de datos personales es el equipo fundador de VitaCitrus.</p>
+    <p>Para cualquier consulta relacionada con privacidad, escríbenos por WhatsApp al <a href="https://wa.me/3177461057">+57 317 746 1057</a>.</p>
+  </div>
+
+  <div class="section" id="datos">
+    <p class="section-num">02</p>
+    <h2>DATOS QUE RECOPILAMOS</h2>
+    <p>Solo recopilamos los datos que tú nos proporcionas voluntariamente a través del formulario de pedido:</p>
+    <ul>
+      <li>Nombre completo</li>
+      <li>Número de teléfono / WhatsApp</li>
+      <li>Ciudad y departamento</li>
+      <li>Dirección de entrega (opcional)</li>
+      <li>Notas adicionales que incluyas en tu pedido</li>
+    </ul>
+    <div class="highlight">
+      <p>🔒 <strong>No almacenamos datos en servidores propios.</strong> Los datos del formulario van directamente a nuestra conversación de WhatsApp y no son guardados en ninguna base de datos.</p>
+    </div>
+  </div>
+
+  <div class="section" id="uso">
+    <p class="section-num">03</p>
+    <h2>CÓMO USAMOS TUS DATOS</h2>
+    <p>Usamos los datos únicamente para:</p>
+    <ul>
+      <li>Confirmar y procesar tu pedido</li>
+      <li>Coordinar el envío a tu dirección</li>
+      <li>Comunicarnos contigo sobre el estado de tu pedido</li>
+    </ul>
+    <p>No enviamos publicidad no solicitada, no compartimos tus datos con terceros para fines comerciales y no vendemos información personal.</p>
+  </div>
+
+  <div class="section" id="derechos">
+    <p class="section-num">04</p>
+    <h2>TUS DERECHOS</h2>
+    <p>De acuerdo con la Ley 1581 de 2012 (Protección de Datos Personales de Colombia), tienes derecho a:</p>
+    <ul>
+      <li>Conocer, actualizar y rectificar tus datos</li>
+      <li>Solicitar la supresión de tus datos</li>
+      <li>Revocar la autorización para el tratamiento</li>
+      <li>Acceder gratuitamente a tus datos</li>
+    </ul>
+    <p>Para ejercer cualquiera de estos derechos, contáctanos por WhatsApp al <a href="https://wa.me/3177461057">+57 317 746 1057</a>.</p>
+  </div>
+
+  <div class="section" id="terceros">
+    <p class="section-num">05</p>
+    <h2>TERCEROS</h2>
+    <p>Esta página usa los siguientes servicios de terceros con sus propias políticas de privacidad:</p>
+    <ul>
+      <li><strong>Vercel</strong> — Hosting del sitio web. Puede registrar IPs y logs de acceso.</li>
+      <li><strong>Google Fonts</strong> — Fuentes tipográficas. Google puede registrar solicitudes.</li>
+      <li><strong>WhatsApp (Meta)</strong> — Canal de comunicación y pedidos.</li>
+    </ul>
+    <p>No usamos cookies de seguimiento, pixels de publicidad ni herramientas de analítica de terceros que recopilen datos personales sin tu consentimiento.</p>
+  </div>
+
+  <div class="section" id="contacto">
+    <p class="section-num">06</p>
+    <h2>CONTACTO</h2>
+    <p>Para cualquier pregunta sobre esta política o el tratamiento de tus datos:</p>
+    <ul>
+      <li>WhatsApp: <a href="https://wa.me/3177461057">+57 317 746 1057</a></li>
+      <li>Instagram: <a href="https://instagram.com/vita.citrus">@vita.citrus</a></li>
+    </ul>
+    <p>Nos comprometemos a responderte en un plazo máximo de 10 días hábiles.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">VITA<span>CITRUS</span></div>
+  <p class="footer-note">© 2026 VitaCitrus · Santander, Colombia · Todos los derechos reservados</p>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(a);})();
+</script>
+</body>
+</html>

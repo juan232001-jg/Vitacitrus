@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hacer Pedido — VitaCitrus</title>
+<meta name="description" content="Haz tu pedido de VitaCitrus directo por WhatsApp. Extracto natural de limón Tahití colombiano.">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#84cc16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ── VARIABLES ── */
+:root {
+  --black:   #050d05;
+  --surface: #0a160a;
+  --card:    #0e1a0e;
+  --white:   #f8f8f2;
+  --lime:    #84cc16;
+  --lime2:   #c8e63c;
+  --gray:    rgba(248,248,242,0.4);
+  --border:  rgba(132,204,22,0.12);
+  --mono:    'Space Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --body:    'DM Sans', sans-serif;
+  --radius:  16px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── CURSOR ── */
+* { cursor: none !important; }
+#cur  { position:fixed; width:8px; height:8px; background:var(--lime); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .15s,height .15s; }
+#curR { position:fixed; width:32px; height:32px; border:1.5px solid rgba(132,204,22,.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .25s,height .25s; }
+body.ch #cur  { width:12px; height:12px; }
+body.ch #curR { width:48px; height:48px; border-color:var(--lime); }
+
+/* ── BACKGROUND ── */
+.bg {
+  position: fixed; inset:0; z-index:0; pointer-events:none;
+}
+.bg-orb {
+  position:absolute; border-radius:50%; filter:blur(80px);
+}
+.bg-orb.o1 { width:500px; height:500px; background:radial-gradient(circle, rgba(132,204,22,.18), transparent 70%); top:-150px; left:-100px; animation: of 9s ease-in-out infinite; }
+.bg-orb.o2 { width:350px; height:350px; background:radial-gradient(circle, rgba(245,158,11,.1), transparent 70%); bottom:-80px; right:-80px; animation: of 9s ease-in-out infinite 4s; }
+.bg-grid {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image: linear-gradient(rgba(132,204,22,.05) 1px,transparent 1px), linear-gradient(90deg,rgba(132,204,22,.05) 1px,transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+@keyframes of { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-20px) scale(1.05)} }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 2.5rem; height:60px;
+  background: rgba(5,13,5,.88); backdrop-filter:blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family:var(--display); font-size:1.4rem; letter-spacing:2px; color:var(--white); text-decoration:none; }
+.nav-logo span { color:var(--lime); }
+.nav-back {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:11px; letter-spacing:1px;
+  color:var(--gray); text-decoration:none; text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-back:hover { color:var(--lime); }
+.nav-back svg { transition:transform .2s; }
+.nav-back:hover svg { transform:translateX(-3px); }
+
+/* ── MAIN LAYOUT ── */
+main {
+  position:relative; z-index:1;
+  min-height:100vh; padding:100px 24px 60px;
+  display:flex; align-items:flex-start; justify-content:center;
+}
+
+.page-wrap {
+  width:100%; max-width:960px;
+  display:grid; grid-template-columns:1fr 1.15fr;
+  gap:48px; align-items:start;
+}
+
+/* ── LEFT PANEL ── */
+.left-panel { position:sticky; top:100px; }
+
+.eyebrow {
+  font-family:var(--mono); font-size:11px; letter-spacing:2px;
+  color:var(--lime); text-transform:uppercase; margin-bottom:1.25rem;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before { content:''; width:24px; height:1px; background:var(--lime); }
+
+.page-title {
+  font-family:var(--display); font-size:clamp(3.5rem,7vw,5.5rem);
+  line-height:.95; color:var(--white); margin-bottom:1.5rem;
+  letter-spacing:1px;
+}
+.page-title em { color:var(--lime); font-style:normal; display:block; }
+
+.page-desc {
+  font-size:.95rem; color:var(--gray); line-height:1.75;
+  margin-bottom:2rem; max-width:360px;
+}
+
+/* Resumen del producto */
+.product-preview {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.5rem;
+  display:flex; gap:16px; align-items:center;
+  margin-bottom:1.5rem;
+}
+.product-preview img {
+  width:72px; height:88px; object-fit:cover;
+  border-radius:10px; flex-shrink:0;
+  border:1px solid rgba(132,204,22,.15);
+}
+.prod-info {}
+.prod-name { font-family:var(--display); font-size:1.4rem; letter-spacing:1px; color:var(--white); }
+.prod-sub  { font-family:var(--mono); font-size:10px; letter-spacing:1.5px; color:var(--lime); margin:4px 0 8px; text-transform:uppercase; }
+.prod-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.prod-tag  {
+  background:rgba(132,204,22,.08); border:1px solid rgba(132,204,22,.15);
+  color:rgba(132,204,22,.8); font-size:11px; font-family:var(--mono);
+  padding:3px 10px; border-radius:100px; letter-spacing:.5px;
+}
+
+/* Pasos */
+.steps-title {
+  font-family:var(--mono); font-size:10px; letter-spacing:2px;
+  color:var(--gray); text-transform:uppercase; margin-bottom:1rem;
+}
+.steps { display:flex; flex-direction:column; gap:.75rem; }
+.step  { display:flex; align-items:center; gap:12px; font-size:.85rem; color:var(--gray); }
+.step-num {
+  width:24px; height:24px; border-radius:50%; flex-shrink:0;
+  background:rgba(132,204,22,.1); border:1px solid rgba(132,204,22,.2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:10px; color:var(--lime);
+}
+.step.done .step-num { background:var(--lime); color:var(--black); border-color:var(--lime); }
+.step.active .step-num { background:rgba(132,204,22,.2); border-color:var(--lime); color:var(--lime); }
+
+/* ── RIGHT PANEL — FORM ── */
+.form-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:2.5rem; position:relative;
+  overflow:hidden;
+}
+.form-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--lime), var(--lime2), transparent);
+}
+
+.form-section-title {
+  font-family:var(--mono); font-size:10px; letter-spacing:2px;
+  color:var(--lime); text-transform:uppercase; margin-bottom:1.25rem;
+  padding-bottom:.75rem; border-bottom:1px solid var(--border);
+}
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { margin-bottom:1.25rem; }
+.form-group.full { grid-column:1/-1; }
+
+label {
+  display:block; font-size:12px; font-weight:500;
+  color:rgba(248,248,242,.5); margin-bottom:8px;
+  font-family:var(--mono); letter-spacing:.5px; text-transform:uppercase;
+}
+label .req { color:var(--lime); margin-left:3px; }
+
+input, select, textarea {
+  width:100%; background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(132,204,22,.12);
+  border-radius:10px; color:var(--white);
+  font-family:var(--body); font-size:.9rem;
+  padding:.75rem 1rem; outline:none;
+  transition:border-color .2s, background .2s, box-shadow .2s;
+  -webkit-appearance:none;
+}
+input::placeholder, textarea::placeholder { color:rgba(248,248,242,.2); }
+input:focus, select:focus, textarea:focus {
+  border-color:rgba(132,204,22,.5);
+  background:rgba(132,204,22,.03);
+  box-shadow:0 0 0 3px rgba(132,204,22,.06);
+}
+input.error, select.error { border-color:#ef4444; }
+
+select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(132,204,22,0.6)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:36px; }
+select option { background:#0e1a0e; color:var(--white); }
+
+textarea { min-height:90px; resize:vertical; }
+
+/* Cantidad */
+.qty-row { display:flex; align-items:center; gap:0; }
+.qty-btn {
+  width:40px; height:44px; background:rgba(132,204,22,.08);
+  border:1.5px solid rgba(132,204,22,.15); color:var(--lime);
+  font-size:1.1rem; display:flex; align-items:center; justify-content:center;
+  transition:all .2s; flex-shrink:0;
+}
+.qty-btn:first-child { border-radius:10px 0 0 10px; border-right:none; }
+.qty-btn:last-child  { border-radius:0 10px 10px 0; border-left:none; }
+.qty-btn:hover { background:rgba(132,204,22,.18); }
+#qty {
+  border-radius:0 !important; text-align:center; font-weight:700;
+  font-size:1rem; border-left:none; border-right:none;
+  width:60px; flex-shrink:0;
+}
+
+/* Cómo nos conociste */
+.radio-group { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.radio-chip input { display:none; }
+.radio-chip label {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.03); border:1.5px solid rgba(132,204,22,.12);
+  border-radius:100px; padding:6px 14px;
+  font-size:12px; color:rgba(248,248,242,.5);
+  text-transform:none; font-family:var(--body); letter-spacing:0;
+  transition:all .2s; margin:0;
+}
+.radio-chip input:checked + label {
+  background:rgba(132,204,22,.12);
+  border-color:var(--lime); color:var(--lime);
+}
+
+/* Divider */
+.form-divider { border:none; border-top:1px solid var(--border); margin:1.5rem 0; }
+
+/* Preview del mensaje */
+.msg-preview {
+  background:rgba(132,204,22,.04); border:1px solid rgba(132,204,22,.1);
+  border-radius:12px; padding:1.25rem 1.25rem 1rem;
+  margin-bottom:1.5rem; display:none;
+}
+.msg-preview.visible { display:block; }
+.msg-preview-label {
+  font-family:var(--mono); font-size:10px; letter-spacing:2px;
+  color:var(--lime); text-transform:uppercase; margin-bottom:.75rem;
+}
+.msg-preview-text {
+  font-size:12px; color:rgba(248,248,242,.55); line-height:1.7;
+  font-family:var(--mono); white-space:pre-line;
+}
+
+/* Submit */
+.btn-submit {
+  width:100%; padding:1rem;
+  background:var(--lime); color:var(--black);
+  border:none; border-radius:12px;
+  font-family:var(--display); font-size:1.3rem;
+  letter-spacing:2px; display:flex; align-items:center;
+  justify-content:center; gap:10px;
+  box-shadow:0 4px 24px rgba(132,204,22,.3);
+  transition:all .25s; position:relative; overflow:hidden;
+}
+.btn-submit::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.15) 50%, transparent 70%);
+  transform:translateX(-100%);
+}
+.btn-submit:hover { background:var(--lime2); transform:translateY(-2px); box-shadow:0 8px 32px rgba(132,204,22,.4); }
+.btn-submit:hover::after { animation:shine .5s ease forwards; }
+@keyframes shine { to{transform:translateX(100%)} }
+.btn-submit:active { transform:translateY(0); }
+
+.form-note {
+  text-align:center; font-size:12px; color:rgba(248,248,242,.25);
+  margin-top:.875rem; font-family:var(--mono); letter-spacing:.5px;
+}
+
+/* Error msg */
+.field-error {
+  font-size:11px; color:#ef4444; margin-top:5px;
+  font-family:var(--mono); display:none;
+}
+.field-error.show { display:block; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .page-wrap { grid-template-columns:1fr; gap:32px; }
+  .left-panel { position:static; }
+  main { padding:80px 16px 48px; }
+  nav { padding:0 1.25rem; }
+  .form-row { grid-template-columns:1fr; }
+  .page-title { font-size:3rem; }
+}
+@media(max-width:480px){
+  .form-card { padding:1.75rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="curR"></div>
+<div class="bg">
+  <div class="bg-orb o1"></div>
+  <div class="bg-orb o2"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="./index.html" class="nav-logo">VITA<span>CITRUS</span></a>
+  <a href="./index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Volver al inicio
+  </a>
+</nav>
+
+<main>
+  <div class="page-wrap">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+      <div class="eyebrow">Hacer pedido</div>
+      <h1 class="page-title">Tu lima,<br><em>lista.</em></h1>
+      <p class="page-desc">Completa el formulario y te abriremos WhatsApp con tu pedido listo para enviar. En minutos lo confirmamos.</p>
+
+      <div class="product-preview">
+        <img src="./images/Producto.jpg" alt="VitaCitrus 250ml">
+        <div class="prod-info">
+          <div class="prod-name">VitaCitrus</div>
+          <div class="prod-sub">Extracto de Lima · 250ml</div>
+          <div class="prod-tags">
+            <span class="prod-tag">100% Natural</span>
+            <span class="prod-tag">Sin conservantes</span>
+            <span class="prod-tag">Colombia</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="steps-title">¿Cómo funciona?</p>
+      <div class="steps">
+        <div class="step active" id="s1">
+          <div class="step-num">1</div>
+          <span>Llena el formulario con tus datos</span>
+        </div>
+        <div class="step" id="s2">
+          <div class="step-num">2</div>
+          <span>Haz clic en "Enviar pedido"</span>
+        </div>
+        <div class="step" id="s3">
+          <div class="step-num">3</div>
+          <span>Se abre WhatsApp con tu mensaje listo</span>
+        </div>
+        <div class="step" id="s4">
+          <div class="step-num">4</div>
+          <span>Nosotros confirmamos y coordinamos el envío</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — FORM -->
+    <div class="form-card">
+
+      <!-- Datos personales -->
+      <p class="form-section-title">01 — Tus datos</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre completo <span class="req">*</span></label>
+          <input type="text" id="nombre" placeholder="Ej: María García" autocomplete="name">
+          <div class="field-error" id="err-nombre">Por favor ingresa tu nombre</div>
+        </div>
+        <div class="form-group">
+          <label for="telefono">WhatsApp / Teléfono <span class="req">*</span></label>
+          <input type="tel" id="telefono" placeholder="Ej: 3001234567" autocomplete="tel">
+          <div class="field-error" id="err-telefono">Por favor ingresa tu teléfono</div>
+        </div>
+      </div>
+
+      <hr class="form-divider">
+
+      <!-- Ubicación -->
+      <p class="form-section-title">02 — Ubicación de entrega</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ciudad">Ciudad <span class="req">*</span></label>
+          <input type="text" id="ciudad" placeholder="Ej: Bucaramanga" autocomplete="address-level2">
+          <div class="field-error" id="err-ciudad">Por favor ingresa tu ciudad</div>
+        </div>
+        <div class="form-group">
+          <label for="departamento">Departamento <span class="req">*</span></label>
+          <select id="departamento">
+            <option value="">Selecciona...</option>
+            <option>Santander</option>
+            <option>Bogotá D.C.</option>
+            <option>Antioquia</option>
+            <option>Valle del Cauca</option>
+            <option>Atlántico</option>
+            <option>Bolívar</option>
+            <option>Norte de Santander</option>
+            <option>Cundinamarca</option>
+            <option>Boyacá</option>
+            <option>Tolima</option>
+            <option>Meta</option>
+            <option>Huila</option>
+            <option>Nariño</option>
+            <option>Cauca</option>
+            <option>Risaralda</option>
+            <option>Caldas</option>
+            <option>Quindío</option>
+            <option>Cesar</option>
+            <option>Magdalena</option>
+            <option>Otro</option>
+          </select>
+          <div class="field-error" id="err-departamento">Selecciona tu departamento</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="direccion">Dirección de entrega</label>
+        <input type="text" id="direccion" placeholder="Ej: Cra 15 #42-10, Barrio Centro" autocomplete="street-address">
+      </div>
+
+      <hr class="form-divider">
+
+      <!-- Pedido -->
+      <p class="form-section-title">03 — Tu pedido</p>
+      <div class="form-group">
+        <label>Cantidad de botellas (250ml) <span class="req">*</span></label>
+        <div class="qty-row">
+          <button type="button" class="qty-btn" id="qtyMinus">−</button>
+          <input type="number" id="qty" value="1" min="1" max="99" readonly>
+          <button type="button" class="qty-btn" id="qtyPlus">+</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notas">Notas adicionales</label>
+        <textarea id="notas" placeholder="Ej: Llámame antes de enviar, prefiero pago contra entrega, tengo alguna pregunta..."></textarea>
+      </div>
+
+      <hr class="form-divider">
+
+      <!-- Cómo nos conociste -->
+      <p class="form-section-title">04 — ¿Cómo nos conociste?</p>
+      <div class="form-group">
+        <div class="radio-group">
+          <label class="radio-chip"><input type="radio" name="origen" value="Instagram"> <label>📸 Instagram</label></label>
+          <label class="radio-chip"><input type="radio" name="origen" value="WhatsApp"> <label>💬 WhatsApp</label></label>
+          <label class="radio-chip"><input type="radio" name="origen" value="Amigo o familiar"> <label>🤝 Un amigo</label></label>
+          <label class="radio-chip"><input type="radio" name="origen" value="Google"> <label>🔍 Google</label></label>
+          <label class="radio-chip"><input type="radio" name="origen" value="Universidad / Colegio"> <label>🎓 Universidad</label></label>
+          <label class="radio-chip"><input type="radio" name="origen" value="Otro"> <label>✨ Otro</label></label>
+        </div>
+      </div>
+
+      <hr class="form-divider">
+
+      <!-- Preview mensaje -->
+      <div class="msg-preview" id="msgPreview">
+        <div class="msg-preview-label">Vista previa del mensaje</div>
+        <div class="msg-preview-text" id="msgText"></div>
+      </div>
+
+      <!-- Submit -->
+      <button type="button" class="btn-submit" id="btnSubmit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ENVIAR PEDIDO POR WHATSAPP
+      </button>
+      <p class="form-note">Al enviar se abrirá WhatsApp con tu pedido listo · Sin costo extra</p>
+
+    </div>
+  </div>
+</main>
+
+<script>
+// ── CURSOR ──
+const cur = document.getElementById('cur');
+const curR = document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animR(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(animR); })();
+document.querySelectorAll('button,a,input,select,textarea,.radio-chip').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('ch'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('ch'));
+});
+
+// ── CANTIDAD ──
+const qtyEl = document.getElementById('qty');
+document.getElementById('qtyMinus').addEventListener('click', () => {
+  if (parseInt(qtyEl.value) > 1) { qtyEl.value = parseInt(qtyEl.value) - 1; updatePreview(); }
+});
+document.getElementById('qtyPlus').addEventListener('click', () => {
+  if (parseInt(qtyEl.value) < 99) { qtyEl.value = parseInt(qtyEl.value) + 1; updatePreview(); }
+});
+
+// ── PASOS (actualizar visualmente) ──
+function updateSteps(step) {
+  for (let i=1; i<=4; i++) {
+    const el = document.getElementById('s'+i);
+    el.classList.remove('done','active');
+    if (i < step)  el.classList.add('done');
+    if (i === step) el.classList.add('active');
+  }
+}
+
+// ── PREVIEW DEL MENSAJE ──
+function buildMessage() {
+  const nombre = document.getElementById('nombre').value.trim();
+  const tel    = document.getElementById('telefono').value.trim();
+  const ciudad = document.getElementById('ciudad').value.trim();
+  const depto  = document.getElementById('departamento').value;
+  const dir    = document.getElementById('direccion').value.trim();
+  const qty    = qtyEl.value;
+  const notas  = document.getElementById('notas').value.trim();
+  const origen = document.querySelector('input[name="origen"]:checked')?.value || '';
+
+  let msg = `🍋 *NUEVO PEDIDO VITACITRUS*\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+  msg += `👤 *Nombre:* ${nombre || '—'}\n`;
+  msg += `📱 *Teléfono:* ${tel || '—'}\n\n`;
+  msg += `📍 *Ciudad:* ${ciudad || '—'}${depto ? ', ' + depto : ''}\n`;
+  if (dir) msg += `🏠 *Dirección:* ${dir}\n`;
+  msg += `\n📦 *Producto:* VitaCitrus 250ml\n`;
+  msg += `🔢 *Cantidad:* ${qty} botella${qty > 1 ? 's' : ''}\n`;
+  if (notas) msg += `\n📝 *Notas:* ${notas}\n`;
+  if (origen) msg += `\n✨ *¿Cómo nos conoció?* ${origen}\n`;
+  msg += `\n━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `_Enviado desde vitacitrus.vercel.app_`;
+  return msg;
+}
+
+function updatePreview() {
+  const nombre = document.getElementById('nombre').value.trim();
+  const ciudad = document.getElementById('ciudad').value.trim();
+  const preview = document.getElementById('msgPreview');
+  const msgText = document.getElementById('msgText');
+
+  if (nombre || ciudad) {
+    preview.classList.add('visible');
+    msgText.textContent = buildMessage();
+  } else {
+    preview.classList.remove('visible');
+  }
+}
+
+// Actualizar preview en tiempo real
+['nombre','telefono','ciudad','departamento','direccion','notas','qty'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updatePreview);
+  document.getElementById(id)?.addEventListener('change', updatePreview);
+});
+document.querySelectorAll('input[name="origen"]').forEach(r => r.addEventListener('change', updatePreview));
+
+// ── VALIDACIÓN ──
+function validate() {
+  let ok = true;
+  const required = [
+    { id:'nombre',       err:'err-nombre',       msg:'Por favor ingresa tu nombre' },
+    { id:'telefono',     err:'err-telefono',      msg:'Por favor ingresa tu teléfono' },
+    { id:'ciudad',       err:'err-ciudad',        msg:'Por favor ingresa tu ciudad' },
+    { id:'departamento', err:'err-departamento',  msg:'Selecciona tu departamento' },
+  ];
+  required.forEach(f => {
+    const el  = document.getElementById(f.id);
+    const err = document.getElementById(f.err);
+    if (!el.value.trim()) {
+      el.classList.add('error');
+      err.textContent = f.msg;
+      err.classList.add('show');
+      ok = false;
+    } else {
+      el.classList.remove('error');
+      err.classList.remove('show');
+    }
+  });
+  // Validar teléfono solo números
+  const tel = document.getElementById('telefono').value.trim();
+  if (tel && !/^[\d\s+\-()]{7,15}$/.test(tel)) {
+    document.getElementById('telefono').classList.add('error');
+    document.getElementById('err-telefono').textContent = 'Teléfono inválido';
+    document.getElementById('err-telefono').classList.add('show');
+    ok = false;
+  }
+  return ok;
+}
+
+// Limpiar error al escribir
+['nombre','telefono','ciudad'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    document.getElementById(id).classList.remove('error');
+    document.getElementById('err-'+id).classList.remove('show');
+  });
+});
+
+// ── SUBMIT → WHATSAPP ──
+document.getElementById('btnSubmit').addEventListener('click', () => {
+  updateSteps(2);
+  if (!validate()) {
+    // Scroll al primer error
+    document.querySelector('.error')?.scrollIntoView({ behavior:'smooth', block:'center' });
+    updateSteps(1);
+    return;
+  }
+  updateSteps(3);
+  const msg = buildMessage();
+  const encoded = encodeURIComponent(msg);
+  const waURL = `https://wa.me/3177461057?text=${encoded}`;
+  setTimeout(() => {
+    updateSteps(4);
+    window.open(waURL, '_blank');
+    setTimeout(() => { window.location.href = './gracias.html'; }, 800);
+  }, 400);
+});
+</script>
+</body>
+</html>

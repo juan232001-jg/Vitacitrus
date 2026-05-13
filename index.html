@@ -1,5 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+<meta name="description" content="VitaCitrus — Extracto premium de limón Tahití colombiano. 100% natural, sin conservantes. Hecho en Santander, Colombia.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vitacitrus.vercel.app/">
+<meta property="og:title" content="VitaCitrus — Poder Concentrado">
+<meta property="og:description" content="El poder de la lima en cada gota. Extracto natural de limón Tahití colombiano.">
+<meta property="og:image" content="https://vitacitrus.vercel.app/images/Producto.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vitacitrus.vercel.app/images/Producto.jpg">
+
+<!-- Schema markup — Google entiende que es un producto -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "VitaCitrus — Extracto de Lima 250ml",
+  "description": "Extracto premium de limón Tahití colombiano. 100% natural, sin conservantes.",
+  "brand": { "@type": "Brand", "name": "VitaCitrus" },
+  "image": "https://vitacitrus.vercel.app/images/Producto.jpg",
+  "url": "https://vitacitrus.vercel.app/",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "COP"
+  }
+}
+</script>
+
+<!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX con tu ID real -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +118,13 @@
     <li><a href="#recetas">Recetas</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="https://wa.me/3177461057?text=Hola%20quiero%20comprar%20VitaCitrus%20🍋" target="_blank" class="nav-cta">Comprar →</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <a href="./pedido.html" class="nav-cta">Comprar →</a>
+  </div>
 </nav>
 
 <!-- ═══════════════════════════════════════════ -->
@@ -197,26 +238,7 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- IMPACT NUMBERS -->
 <!-- ═══════════════════════════════════════════ -->
-<div class="impact-section">
-  <div class="impact-grid">
-    <div class="impact-item reveal">
-      <div class="impact-number">30×</div>
-      <div class="impact-label">Limas por botella</div>
-    </div>
-    <div class="impact-item reveal reveal-delay-1">
-      <div class="impact-number">0g</div>
-      <div class="impact-label">Azúcar añadida</div>
-    </div>
-    <div class="impact-item reveal reveal-delay-2">
-      <div class="impact-number">100%</div>
-      <div class="impact-label">Orgánico certificado</div>
-    </div>
-    <div class="impact-item reveal reveal-delay-3">
-      <div class="impact-number">2025</div>
-      <div class="impact-label">Colombia · Origen</div>
-    </div>
-  </div>
-</div>
+
 
 <section class="impact-section">
   <div class="impact-grid">
@@ -508,13 +530,19 @@
     <div class="footer-logo">VITACITRUS</div>
     <div class="footer-copy">© 2025 VitaCitrus · Colombia · Todos los derechos reservados</div>
     <div class="footer-links">
-      <a href="https://www.facebook.com/juan.gabriel.almeida.2025" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/vita.citrus" target="_blank">Instagram</a>
-      <a href="https://youtube.com/@juangabrielalmeidamartinez" target="_blank">YouTube</a>
-    </div>
+  <a href="https://www.facebook.com/juan.gabriel.almeida.2025" target="_blank">Facebook</a>
+  <a href="https://www.instagram.com/vita.citrus" target="_blank">Instagram</a>
+  <a href="https://youtube.com/@juangabrielalmeidamartinez" target="_blank">YouTube</a>
+  <a href="./privacidad.html">Privacidad</a>
+</div>
   </div>
 </footer>
-
+<!-- Botón fijo móvil -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="./pedido.html" class="mobile-cta-btn">
+    🍋 Hacer pedido
+  </a>
+</div>
 <script src="./js/main.js"></script>
 </body>
 </html>

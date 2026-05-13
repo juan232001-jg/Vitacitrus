@@ -1,0 +1,193 @@
+<!-- ═══════════════════════════════════════════════════════
+     INSTRUCCIONES DE INTEGRACIÓN — ARCHIVOS TÉCNICOS
+     Lee cada sección y crea el archivo correspondiente
+═══════════════════════════════════════════════════════ -->
+
+
+<!-- ──────────────────────────────────────────────
+     1. ARCHIVO: robots.txt
+     UBICACIÓN: raíz del proyecto (junto a index.html)
+     CONTENIDO EXACTO (copia todo entre las líneas):
+─────────────────────────────────────────────────
+
+User-agent: *
+Allow: /
+Disallow: /gracias.html
+
+Sitemap: https://vitacitrus.vercel.app/sitemap.xml
+
+─────────────────────────────────────────────────
+     2. ARCHIVO: sitemap.xml
+     UBICACIÓN: raíz del proyecto
+     CONTENIDO EXACTO:
+─────────────────────────────────────────────────
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://vitacitrus.vercel.app/</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://vitacitrus.vercel.app/pedido.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://vitacitrus.vercel.app/privacidad.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
+
+─────────────────────────────────────────────────
+     3. SCHEMA MARKUP (producto)
+     UBICACIÓN: pega en el <head> de index.html
+     justo antes del cierre </head>
+─────────────────────────────────────────────────
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "VitaCitrus — Extracto de Lima 250ml",
+  "description": "Extracto premium de limón Tahití colombiano. 100% natural, sin conservantes ni azúcares añadidos. Extracción en frío. Hecho en Santander, Colombia.",
+  "brand": {
+    "@type": "Brand",
+    "name": "VitaCitrus"
+  },
+  "image": "https://vitacitrus.vercel.app/images/Producto.jpg",
+  "url": "https://vitacitrus.vercel.app/",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "COP",
+    "seller": {
+      "@type": "Organization",
+      "name": "VitaCitrus",
+      "url": "https://vitacitrus.vercel.app"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3"
+  }
+}
+<\/script>
+
+─────────────────────────────────────────────────
+     4. GOOGLE ANALYTICS 4
+     UBICACIÓN: pega en el <head> de index.html,
+     pedido.html y privacidad.html
+     REEMPLAZA G-XXXXXXXXXX con tu ID real de GA4
+     (lo encuentras en analytics.google.com)
+─────────────────────────────────────────────────
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+─────────────────────────────────────────────────
+     5. BOTÓN MÓVIL FIJO (sticky CTA)
+     UBICACIÓN: pega en index.html antes de </body>
+     y en pedido.html
+─────────────────────────────────────────────────
+
+<!-- Sticky mobile CTA — solo visible en móvil -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="./pedido.html" class="mobile-cta-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    🍋 Hacer pedido
+  </a>
+</div>
+
+─────────────────────────────────────────────────
+     CSS del botón móvil
+     Pega en stayls.css al final
+─────────────────────────────────────────────────
+
+.mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 800;
+    padding: 12px 16px;
+    background: linear-gradient(to top, rgba(5,13,5,1) 70%, transparent);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-cta.visible {
+    transform: translateY(0);
+}
+
+.mobile-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--lime);
+    color: var(--black);
+    padding: 1rem;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(132, 204, 22, 0.4);
+    font-family: var(--font-body);
+}
+
+@media (max-width: 768px) {
+    .mobile-cta { display: block; }
+    /* Dar espacio al contenido para que no quede tapado */
+    body { padding-bottom: 80px; }
+}
+
+─────────────────────────────────────────────────
+     JS del botón móvil
+     Pega en main.js al final
+─────────────────────────────────────────────────
+
+// Mostrar CTA móvil después de hacer scroll
+const mobileCta = document.getElementById('mobileCta');
+if (mobileCta) {
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const current = window.scrollY;
+        // Mostrar después de pasar el hero
+        if (current > window.innerHeight * 0.5) {
+            mobileCta.classList.add('visible');
+        } else {
+            mobileCta.classList.remove('visible');
+        }
+        lastScroll = current;
+    }, { passive: true });
+}
+
+─────────────────────────────────────────────────
+     6. LINK A PRIVACIDAD en footer
+     Pega en el footer de index.html, pedido.html
+─────────────────────────────────────────────────
+
+<a href="./privacidad.html" style="color:rgba(248,248,242,0.25);font-size:0.75rem;text-decoration:none;">
+  Política de Privacidad
+</a>
+
+═══════════════════════════════════════════════════════ -->
